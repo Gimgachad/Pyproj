@@ -139,8 +139,7 @@ def megaode(f, x0, t, h, a, b, n):
     #     plt.show()
     
     # return x4
-    from sympy import Function, dsolve, Eq, Derivative, sin
-    from sympy.abc import x
+    from sympy import Function, dsolve, Eq, Derivative, symbols
     # def solve_ode():
     #     # Define the function
     #     f = Function('f')
@@ -152,7 +151,18 @@ def megaode(f, x0, t, h, a, b, n):
     #     return solution
     #-------------OR-------------------------#
     # def solve_ode(ode, func):
-    symsol = dsolve(ode, func)
+    # Define the symbols
+    x = symbols('x')
+    
+    # Define the function
+    f = Function('f')
+
+    # Define the differential equation
+    diff_eq = Eq(Derivative(f(x), x), f)
+
+    # Solve the differential equation
+    symsol = dsolve(diff_eq)
+
         # return symsol
     # Example usage:
     # f = Function('f')
